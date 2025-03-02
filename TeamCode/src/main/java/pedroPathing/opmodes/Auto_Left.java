@@ -38,11 +38,7 @@ public class Auto_Left extends PedroOpMode {
         super(ARM1.INSTANCE, ARM2.INSTANCE, CLAW.INSTANCE, INTAKE_ANGLE.INSTANCE, CLAW_ANGLE.INSTANCE, SWEEPER.INSTANCE);
     }
     private Follower follower;
-    private Timer pathTimer, actionTimer, opmodeTimer;
 
-    /** This is the variable where we store the state of our auto.
-     * It is used by the pathUpdate method. */
-    private int pathState;
 
     /* Create and Define Poses + Paths
      * Poses are built with three constructors: x, y, and heading (in Radians).
@@ -87,7 +83,7 @@ public class Auto_Left extends PedroOpMode {
 
     /* These are our Paths and PathChains that we will define in buildPaths() */
     private Path park;
-    private PathChain scorePreload, grabPickup1, grabPickup2, grabPickup3, grabPickup4, scorePickup1, scorePickup2, scorePickup3, scorePickup4;
+    private PathChain scorePreload, grabPickup1, grabPickup2, grabPickup3, grabPickup4, turnPickup3, scorePickup1, scorePickup2, scorePickup3, scorePickup4;
 
     /** Build the paths for the auto (adds, for example, constant/linear headings while doing paths)
      * It is necessary to do this so that all the paths are built before the auto starts. **/
@@ -149,10 +145,16 @@ public class Auto_Left extends PedroOpMode {
                 .setLinearHeadingInterpolation(scorePose.getHeading(), pickup3Pose.getHeading())
                 .build();
 
+        /* This is our turnPickup3 PathChain. We are using a single path with a BezierLine, which is a straight line. */
+        turnPickup3 = follower.pathBuilder()
+                .addPath(new BezierLine(new Point(pickup3Pose), new Point(turnPickup3Pose)))
+                .setLinearHeadingInterpolation(pickup3Pose.getHeading(), turnPickup3Pose.getHeading())
+                .build();
+
         /* This is our scorePickup3 PathChain. We are using a single path with a BezierLine, which is a straight line. */
         scorePickup3 = follower.pathBuilder()
-                .addPath(new BezierLine(new Point(pickup3Pose), new Point(scorePose)))
-                .setLinearHeadingInterpolation(pickup3Pose.getHeading(), scorePose.getHeading())
+                .addPath(new BezierLine(new Point(turnPickup3Pose), new Point(scorePose)))
+                .setLinearHeadingInterpolation(turnPickup3Pose.getHeading(), scorePose.getHeading())
                 .build();
 
         /* This is our grabPickup4 PathChain. We are using a single path with a BezierLine, which is a straight line. */
@@ -173,234 +175,92 @@ public class Auto_Left extends PedroOpMode {
         park.setLinearHeadingInterpolation(scorePose.getHeading(), parkPose.getHeading());
     }
 
-    public Command updateTelemetry(){
-        telemetry.addData("path state", pathState);
-        telemetry.addData("x", follower.getPose().getX());
-        telemetry.addData("y", follower.getPose().getY());
-        telemetry.addData("heading", follower.getPose().getHeading());
-        telemetry.update();
-        return new NullCommand();
-    }
     public Command routine(){
-        return new ParallelGroup(
-            updateTelemetry(),
-            ARM1.INSTANCE.getDefaultCommand(),
-            ARM2.INSTANCE.getDefaultCommand(),
-            new SequentialGroup(
-                new ParallelGroup(
-                    INTAKE_ANGLE.INSTANCE.RotatePosition0_basket(),
-                    CLAW.INSTANCE.closeClaw(),
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        CLAW_ANGLE.INSTANCE.backward()
-                    ),
-                    ARM1.INSTANCE.toHighBasket(),
-                    ARM2.INSTANCE.toHighBasket(),
-                    new FollowPath(scorePreload)
-                ),
-                CLAW.INSTANCE.openClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new ParallelGroup(
-                            INTAKE_ANGLE.INSTANCE.RotatePosition0_left(),
-                            CLAW_ANGLE.INSTANCE.forward()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toFloor(),
-                            ARM2.INSTANCE.toFloor()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new FollowPath(grabPickup1)
-                    )
-                ),
+        return new SequentialGroup(
+            new ParallelGroup(
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_basket(),
                 CLAW.INSTANCE.closeClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(1.5),
-                        INTAKE_ANGLE.INSTANCE.RotatePosition0_basket()
-                    ),
-                    new SequentialGroup(
-                        new Delay(1),
-                        CLAW_ANGLE.INSTANCE.backward()
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toHighBasket(),
-                            ARM2.INSTANCE.toHighBasket()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(1),
-                        new FollowPath(scorePickup1)
-                    )
-                ),
-                CLAW.INSTANCE.openClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new ParallelGroup(
-                            INTAKE_ANGLE.INSTANCE.RotatePosition0_left(),
-                            CLAW_ANGLE.INSTANCE.forward()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toFloor(),
-                            ARM2.INSTANCE.toFloor()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new FollowPath(grabPickup2)
-                    )
-                ),
-                CLAW.INSTANCE.closeClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(1.5),
-                        INTAKE_ANGLE.INSTANCE.RotatePosition0_basket()
-                    ),
-                    new SequentialGroup(
-                        new Delay(1),
-                        CLAW_ANGLE.INSTANCE.backward()
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toHighBasket(),
-                            ARM2.INSTANCE.toHighBasket()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(1),
-                        new FollowPath(scorePickup2)
-                    )
-                ),
-                CLAW.INSTANCE.openClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new ParallelGroup(
-                            INTAKE_ANGLE.INSTANCE.RotatePosition0_left(),
-                            CLAW_ANGLE.INSTANCE.forward()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toWall(),
-                            ARM2.INSTANCE.toWall()
-                        ),
-                        new Delay(1),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toFloor(0.25),
-                            ARM2.INSTANCE.toFloor()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new FollowPath(grabPickup3)
-                    )
-                ),
-                CLAW.INSTANCE.closeClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(1.5),
-                        INTAKE_ANGLE.INSTANCE.RotatePosition0_basket()
-                    ),
-                    new SequentialGroup(
-                        new Delay(1),
-                        CLAW_ANGLE.INSTANCE.backward()
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toHighBasket(),
-                            ARM2.INSTANCE.toHighBasket()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(1),
-                        new FollowPath(scorePickup3)
-                    )
-                ),
-                CLAW.INSTANCE.openClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new FollowPath(grabPickup4)
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new ParallelGroup(
-                            CLAW_ANGLE.INSTANCE.forward(),
-                            CLAW.INSTANCE.openClawMore()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(2),
-                        INTAKE_ANGLE.INSTANCE.RotatePosition2()
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toVertSub(),
-                            ARM2.INSTANCE.toVertSub()
-                        ),
-                        new Delay(2),
-                        ARM1.INSTANCE.toVertFloor(0.25)
-                    )
-                ),
-                CLAW.INSTANCE.closeClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(1),
-                        new FollowPath(scorePickup4)
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        INTAKE_ANGLE.INSTANCE.RotatePosition0_basket()
-                    ),
-                    new SequentialGroup(
-                        new Delay(1.5),
-                        CLAW_ANGLE.INSTANCE.backward()
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        ARM1.INSTANCE.toVertSub(),
-                        new Delay(1),
-                        new ParallelGroup(
-                            ARM1.INSTANCE.toHighBasket(),
-                            ARM2.INSTANCE.toHighBasket()
-                        )
-                    )
-                ),
-                CLAW.INSTANCE.openClaw(),
-                new ParallelGroup(
-                    new SequentialGroup(
-                        new Delay(0.5),
-                        new FollowPath(park)
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.8),
-                        new ParallelGroup(
-                            INTAKE_ANGLE.INSTANCE.RotatePosition0_left(),
-                            CLAW_ANGLE.INSTANCE.forward()
-                        )
-                    ),
-                    new SequentialGroup(
-                        new Delay(0.3),
-                        ARM1.INSTANCE.toWallWall()
-                    )
-                )
+                CLAW_ANGLE.INSTANCE.backward().afterTime(0.5),
+                ARM1.INSTANCE.toHighBasket(),
+                ARM2.INSTANCE.toHighBasket(),
+                new FollowPath(scorePreload)
+            ),
+            CLAW.INSTANCE.openClaw(),
+            new ParallelGroup(
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.5),
+                CLAW_ANGLE.INSTANCE.forward().afterTime(0.5),
+                ARM1.INSTANCE.toFloor().afterTime(0.3),
+                ARM2.INSTANCE.toFloor().afterTime(0.3),
+                new FollowPath(grabPickup1).afterTime(0.5)
+            ),
+            CLAW.INSTANCE.closeClaw(),
+            new ParallelGroup(
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_basket().afterTime(1.5),
+                CLAW_ANGLE.INSTANCE.backward().afterTime(1),
+                ARM1.INSTANCE.toHighBasket().afterTime(0.3),
+                ARM2.INSTANCE.toHighBasket().afterTime(0.3),
+                new FollowPath(scorePickup1).afterTime(1)
+            ),
+            CLAW.INSTANCE.openClaw(),
+            new ParallelGroup(
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.5),
+                CLAW_ANGLE.INSTANCE.forward().afterTime(0.5),
+                ARM1.INSTANCE.toFloor().afterTime(0.3),
+                ARM2.INSTANCE.toFloor().afterTime(0.3),
+                new FollowPath(grabPickup2).afterTime(0.5)
+            ),
+            CLAW.INSTANCE.closeClaw(),
+            new ParallelGroup(
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_basket().afterTime(1.5),
+                CLAW_ANGLE.INSTANCE.backward().afterTime(1),
+                ARM1.INSTANCE.toHighBasket().afterTime(0.3),
+                ARM2.INSTANCE.toHighBasket().afterTime(0.3),
+                new FollowPath(scorePickup2).afterTime(1)
+            ),
+            CLAW.INSTANCE.openClaw(),
+            new ParallelGroup(
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.5),
+                CLAW_ANGLE.INSTANCE.forward().afterTime(0.5),
+                ARM1.INSTANCE.toWall().afterTime(0.3),
+                ARM2.INSTANCE.toWall().afterTime(0.3),
+                ARM1.INSTANCE.toFloor(0.25).afterTime(2.8),
+                ARM2.INSTANCE.toFloor().afterTime(2.8),
+                new FollowPath(grabPickup3).afterTime(0.5),
+                new FollowPath(turnPickup3).afterTime(2)
+            ),
+            CLAW.INSTANCE.closeClaw(),
+            new ParallelGroup(
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_basket().afterTime(1.5),
+                CLAW_ANGLE.INSTANCE.backward().afterTime(1),
+                ARM1.INSTANCE.toHighBasket().afterTime(0.3),
+                ARM2.INSTANCE.toHighBasket().afterTime(0.3),
+                new FollowPath(scorePickup3).afterTime(1)
+            ),
+            CLAW.INSTANCE.openClaw(),
+            new ParallelGroup(
+                new FollowPath(grabPickup4).afterTime(0.5),
+                CLAW_ANGLE.INSTANCE.forward().afterTime(0.5),
+                CLAW.INSTANCE.openClawMore().afterTime(0.5),
+                INTAKE_ANGLE.INSTANCE.RotatePosition2().afterTime(2),
+                ARM1.INSTANCE.toVertSub().afterTime(0.3),
+                ARM2.INSTANCE.toVertSub().afterTime(0.3),
+                ARM1.INSTANCE.toVertFloor(0.25).afterTime(4)
+            ),
+            CLAW.INSTANCE.closeClaw(),
+            new ParallelGroup(
+                new FollowPath(scorePickup4).afterTime(1),
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_basket().afterTime(0.3),
+                CLAW_ANGLE.INSTANCE.backward().afterTime(1.5),
+                ARM1.INSTANCE.toVertSub().afterTime(0.3),
+                ARM1.INSTANCE.toHighBasket().afterTime(2),
+                ARM2.INSTANCE.toHighBasket().afterTime(2)
+            ),
+            CLAW.INSTANCE.openClaw(),
+            new ParallelGroup(
+                new FollowPath(park).afterTime(0.5),
+                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.8),
+                CLAW_ANGLE.INSTANCE.forward().afterTime(0.8),
+                ARM1.INSTANCE.toWallWall().afterTime(0.3)
             )
         );
     }
@@ -408,9 +268,6 @@ public class Auto_Left extends PedroOpMode {
     /** This method is called once at the init of the OpMode. **/
     @Override
     public void onInit() {
-        pathTimer = new Timer();
-        opmodeTimer = new Timer();
-        opmodeTimer.resetTimer();
         follower = new Follower(hardwareMap, FConstants.class, LConstants.class);
         follower.setStartingPose(startPose);
         buildPaths();
@@ -420,8 +277,15 @@ public class Auto_Left extends PedroOpMode {
      * It runs all the setup actions, including building paths and starting the path system **/
     @Override
     public void onStartButtonPressed() {
-        opmodeTimer.resetTimer();
         routine().invoke();
+    }
+
+    @Override
+    public void onUpdate(){
+        telemetry.addData("x", follower.getPose().getX());
+        telemetry.addData("y", follower.getPose().getY());
+        telemetry.addData("heading", follower.getPose().getHeading());
+        telemetry.update();
     }
 }
 
