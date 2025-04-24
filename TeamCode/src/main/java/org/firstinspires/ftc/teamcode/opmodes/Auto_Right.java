@@ -12,7 +12,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
+import com.rowanmcalpin.nextftc.ftc.NextFTCOpMode;
 import com.rowanmcalpin.nextftc.pedro.FollowPath;
+import com.rowanmcalpin.nextftc.pedro.PedroData;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import org.firstinspires.ftc.teamcode.constants.FConstants;
@@ -26,7 +28,7 @@ import org.firstinspires.ftc.teamcode.subsystems.PoseStorage;
 import org.firstinspires.ftc.teamcode.subsystems.SWEEPER;
 
 @Autonomous(name = "Auto_Right_5+1", group = "opmodes")
-public class Auto_Right extends PedroOpMode {
+public class Auto_Right extends NextFTCOpMode {
         public Auto_Right() {
                 super(ARM1.INSTANCE, ARM2.INSTANCE, CLAW.INSTANCE, INTAKE_ANGLE.INSTANCE, CLAW_ANGLE.INSTANCE, SWEEPER.INSTANCE);
         }
@@ -244,6 +246,7 @@ public class Auto_Right extends PedroOpMode {
         @Override
         public void onInit() {
                 follower = new Follower(hardwareMap, FConstants.class, LConstants.class);
+                PedroData.INSTANCE.setFollower(follower);
                 follower.setStartingPose(startPose);
                 buildPaths();
                 new ParallelGroup(
@@ -262,6 +265,7 @@ public class Auto_Right extends PedroOpMode {
 
         @Override
         public void onUpdate(){
+                follower.update();
                 telemetry.addData("x", follower.getPose().getX());
                 telemetry.addData("y", follower.getPose().getY());
                 telemetry.addData("heading", follower.getPose().getHeading());
