@@ -26,217 +26,6 @@ import org.firstinspires.ftc.teamcode.subsystems.PoseStorage;
 import org.firstinspires.ftc.teamcode.subsystems.SWEEPER;
 
 @Autonomous(name = "Auto_Right_5+1_Old", group = "opmodes")
-class GeneratedPaths {
-
-        public static PathBuilder builder = new PathBuilder();
-
-        public static PathChain line1 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(9.000, 64.800, Point.CARTESIAN),
-                                new Point(20.893, 77.018, Point.CARTESIAN),
-                                new Point(34.300, 76.800, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line2 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(34.300, 76.800, Point.CARTESIAN),
-                                new Point(14.339, 39.000, Point.CARTESIAN),
-                                new Point(56.400, 39.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line3 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(56.400, 39.000, Point.CARTESIAN),
-                                new Point(67.000, 39.000, Point.CARTESIAN),
-                                new Point(67.000, 26.000, Point.CARTESIAN),
-                                new Point(56.400, 26.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line4 = builder
-                .addPath(
-                        new BezierLine(
-                                new Point(56.400, 26.000, Point.CARTESIAN),
-                                new Point(21.000, 26.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line5 = builder
-                .addPath(
-                        new BezierLine(
-                                new Point(21.000, 26.000, Point.CARTESIAN),
-                                new Point(56.400, 26.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line6 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(56.400, 26.000, Point.CARTESIAN),
-                                new Point(67.000, 26.000, Point.CARTESIAN),
-                                new Point(67.000, 16.000, Point.CARTESIAN),
-                                new Point(56.400, 16.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line7 = builder
-                .addPath(
-                        new BezierLine(
-                                new Point(56.400, 16.000, Point.CARTESIAN),
-                                new Point(21.000, 16.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line8 = builder
-                .addPath(
-                        new BezierLine(
-                                new Point(21.000, 16.000, Point.CARTESIAN),
-                                new Point(56.400, 16.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line9 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(56.400, 16.000, Point.CARTESIAN),
-                                new Point(67.000, 16.000, Point.CARTESIAN),
-                                new Point(67.000, 6.000, Point.CARTESIAN),
-                                new Point(56.400, 6.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line10 = builder
-                .addPath(
-                        new BezierLine(
-                                new Point(56.400, 6.000, Point.CARTESIAN),
-                                new Point(14.550, 6.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line11 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(14.550, 6.000, Point.CARTESIAN),
-                                new Point(14.550, 74.800, Point.CARTESIAN),
-                                new Point(34.300, 74.800, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line12 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(34.300, 74.800, Point.CARTESIAN),
-                                new Point(19.000, 74.800, Point.CARTESIAN),
-                                new Point(14.550, 34.700, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line13 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(14.550, 34.700, Point.CARTESIAN),
-                                new Point(19.000, 72.800, Point.CARTESIAN),
-                                new Point(34.300, 72.800, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line14 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(34.300, 72.800, Point.CARTESIAN),
-                                new Point(19.000, 72.800, Point.CARTESIAN),
-                                new Point(14.550, 34.700, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line15 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(14.550, 34.700, Point.CARTESIAN),
-                                new Point(19.000, 70.800, Point.CARTESIAN),
-                                new Point(34.300, 70.800, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line16 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(34.300, 70.800, Point.CARTESIAN),
-                                new Point(19.000, 70.800, Point.CARTESIAN),
-                                new Point(14.550, 34.700, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line17 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(14.550, 34.700, Point.CARTESIAN),
-                                new Point(19.000, 68.800, Point.CARTESIAN),
-                                new Point(34.300, 68.800, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line18 = builder
-                .addPath(
-                        new BezierCurve(
-                                new Point(34.300, 68.800, Point.CARTESIAN),
-                                new Point(19.000, 68.800, Point.CARTESIAN),
-                                new Point(14.550, 34.700, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
-        public static PathChain line19 = builder
-                .addPath(
-                        new BezierLine(
-                                new Point(14.550, 34.700, Point.CARTESIAN),
-                                new Point(18.230, 124.950, Point.CARTESIAN)
-                        )
-                )
-                .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(315))
-                .build();
-}
-
 public class Auto_Right_Old extends PedroOpMode {
         public Auto_Right_Old() {
                 super(ARM1.INSTANCE, ARM2.INSTANCE, CLAW.INSTANCE, INTAKE_ANGLE.INSTANCE, CLAW_ANGLE.INSTANCE, SWEEPER.INSTANCE);
@@ -257,35 +46,40 @@ public class Auto_Right_Old extends PedroOpMode {
         private final Pose startPose = new Pose(9.000, 64.800, Math.toRadians(180));
         private final Pose scorePreloadPose = new Pose(34.300, 76.800,Math.toRadians(180));
         private final Pose scorePreloadControlPose = new Pose(20.893, 77.018,Math.toRadians(180));
+        private final Pose leaveSubPose = new Pose(56.400, 39.000,Math.toRadians(180));
+        private final Pose leaveSubControlPose = new Pose(14.339, 39.000, Math.toRadians(180));
 
         /** Lowest (First) Sample from the Spike Mark */
-        private final Pose push1Pose = new Pose(23.966, 26.629, Math.toRadians(180));
-        private final Pose push1ControlPose1 = new Pose(10.651, 4.916, Math.toRadians(180));
+        private final Pose push1Pose = new Pose(56.400, 26.000, Math.toRadians(180));
+        private final Pose push1ControlPose1 = new Pose(67.000, 39.000, Math.toRadians(180));
 
-        private final Pose push1ControlPose2 = new Pose(60.222, 76.814, Math.toRadians(180));
-
-        private final Pose push1ControlPose3 = new Pose(93.405, 19.050, Math.toRadians(180));
+        private final Pose push1ControlPose2 = new Pose(67.000, 26.000, Math.toRadians(180));
+        private final Pose pushed1Pose = new Pose(21.000, 26.000, Math.toRadians(180));
 
         /** Middle (Second) Sample from the Spike Mark */
-        private final Pose push2Pose = new Pose(23.966, 16.629, Math.toRadians(180));
-        private final Pose push2ControlPose1 = new Pose(64.523, 31.750, Math.toRadians(180));
-        private final Pose push2ControlPose2 = new Pose(81.730, 12.495, Math.toRadians(180));
+        private final Pose push2Pose = new Pose(56.400, 16.000, Math.toRadians(180));
+        private final Pose push2ControlPose1 = push1ControlPose2;
+        private final Pose push2ControlPose2 = new Pose(67.000, 16.000, Math.toRadians(180));
+        private final Pose pushed2Pose = new Pose(21.000, 16.000, Math.toRadians(180));
 
         /** Highest (Third) Sample from the Spike Mark */
-        private final Pose push3Pose = new Pose(23.966, 6.629,Math.toRadians(180));
-        private final Pose push3ControlPose1 = new Pose(64.523, 21.750,Math.toRadians(180));
-        private final Pose push3ControlPose2 = new Pose(81.730, 2.495,Math.toRadians(180));
+        private final Pose push3Pose = new Pose(56.400, 6.000,Math.toRadians(180));
+        private final Pose push3ControlPose1 = push2ControlPose2;
+        private final Pose push3ControlPose2 = new Pose(67.000, 6.000,Math.toRadians(180));
+        private final Pose pushed3Pose = new Pose(14.550, 6.000, Math.toRadians(180));
 
         /** Control Pose for Scoring Second Specimen*/
-        private final Pose score2ControlPose = new Pose(22.942, 69.235,Math.toRadians(180));
+        private final Pose score2Pose = new Pose(34.300, 74.800,Math.toRadians(180));
+        private final Pose score2ControlPose = new Pose(14.550, 74.800,Math.toRadians(180));
 
         /** Cycling Specimens*/
-        private final Pose pickupPose = new Pose(23.966, 52.028,Math.toRadians(180));
-        private final Pose scorePose = new Pose(34.300, 63.909, Math.toRadians(180));
-        private final Pose scoreControlPose = new Pose(23.556, 65.343,Math.toRadians(180));
+        private final Pose pickupPose = new Pose(14.550, 34.700,Math.toRadians(180));
+        private final Pose pickupControlPose = new Pose(19.000, 74.800, Math.toRadians(180));
+        private final Pose scorePose = new Pose(34.300, 72.800, Math.toRadians(180));
+        private final Pose scoreControlPose = new Pose(19.000, 72.800,Math.toRadians(180));
 
         /** +1 sample pose for our robot */
-        private final Pose scoreSamplePose = new Pose(20.279, 122.902, Math.toRadians(315));
+        private final Pose scoreSamplePose = new Pose(18.230, 124.950, Math.toRadians(315));
 
         /* These are our Paths and PathChains that we will define in buildPaths() */
         private Path scorePreload, scorePickup1, grabPickup2, scorePickup2, grabPickup3, scorePickup3, grabPickup4, scorePickup4, grabSample, scoreSample;
@@ -316,42 +110,46 @@ public class Auto_Right_Old extends PedroOpMode {
 
                 /* Pushing samples PathChain */
                 pushSamples = follower.pathBuilder()
-                        .addPath(new BezierCurve(new Point(scorePreloadPose), new Point(push1ControlPose1), new Point(push1ControlPose2), new Point(push1ControlPose3), new Point(push1Pose)))
+                        .addPath(new BezierCurve(new Point(scorePreloadPose), new Point(leaveSubControlPose), new Point(leaveSubPose)))
+                        .addPath(new BezierCurve(new Point(leaveSubPose), new Point(push1ControlPose1), new Point(push1ControlPose2), new Point(push1Pose)))
+                        .addPath(new BezierLine(new Point(push1Pose), new Point(pushed1Pose)))
                         .addPath(new BezierCurve(new Point(push1Pose), new Point(push2ControlPose1), new Point(push2ControlPose2), new Point(push2Pose)))
+                        .addPath(new BezierLine(new Point(push2Pose), new Point(pushed2Pose)))
                         .addPath(new BezierCurve(new Point(push2Pose), new Point(push3ControlPose1), new Point(push3ControlPose2), new Point(push3Pose)))
+                        .addPath(new BezierLine(new Point(push3Pose), new Point(pushed3Pose)))
                         .setConstantHeadingInterpolation(scorePreloadPose.getHeading())
                         .build();
 
 
                 /* This is our scorePickup1 PathChain. We are using a single path with a BezierLine, which is a straight line. */
-                scorePickup1 = new Path(new BezierCurve(new Point(push3Pose), new Point(score2ControlPose), new Point(scorePose)));
+                scorePickup1 = new Path(new BezierCurve(new Point(pushed3Pose), new Point(score2ControlPose), new Point(score2Pose)));
                 scorePickup1.setConstantHeadingInterpolation(push3Pose.getHeading());
 
                 /* This is our grabPickup2 PathChain. We are using a single path with a BezierLine, which is a straight line. */
-                grabPickup2 = new Path(new BezierLine(new Point(scorePose), new Point(pickupPose)));
-                grabPickup2.setLinearHeadingInterpolation(scorePose.getHeading(), pickupPose.getHeading());
+                grabPickup2 = new Path(new BezierCurve(new Point(score2Pose), new Point(pickupControlPose), new Point(pickupPose)));
+                grabPickup2.setConstantHeadingInterpolation(score2Pose.getHeading());
 
                 /* This is our scorePickup2 PathChain. We are using a single path with a BezierLine, which is a straight line. */
                 scorePickup2 = new Path(new BezierCurve(new Point(pickupPose), new Point(scoreControlPose), new Point(scorePose)));
-                scorePickup2.setLinearHeadingInterpolation(pickupPose.getHeading(), scorePose.getHeading());
+                scorePickup2.setConstantHeadingInterpolation(pickupPose.getHeading());
 
                 /* This is our grabPickup3 PathChain. We are using a single path with a BezierLine, which is a straight line. */
-                grabPickup3 = new Path(new BezierLine(new Point(scorePose), new Point(pickupPose)));
-                grabPickup3.setLinearHeadingInterpolation(scorePose.getHeading(), pickupPose.getHeading());
+                grabPickup3 = new Path(new BezierCurve(new Point(scorePose), new Point(pickupControlPose), new Point(pickupPose)));
+                grabPickup3.setConstantHeadingInterpolation(scorePose.getHeading());
 
                 /* This is our scorePickup3 PathChain. We are using a single path with a BezierLine, which is a straight line. */
                 scorePickup3 = new Path(new BezierCurve(new Point(pickupPose), new Point(scoreControlPose), new Point(scorePose)));
-                scorePickup3.setLinearHeadingInterpolation(pickupPose.getHeading(), scorePose.getHeading());
+                scorePickup3.setConstantHeadingInterpolation(pickupPose.getHeading());
 
                 /* This is our grabPickup4 PathChain. We are using a single path with a BezierLine, which is a straight line. */
-                grabPickup4 = new Path(new BezierLine(new Point(scorePose), new Point(pickupPose)));
-                grabPickup4.setLinearHeadingInterpolation(scorePose.getHeading(), pickupPose.getHeading());
+                grabPickup4 = new Path(new BezierCurve(new Point(scorePose), new Point(pickupControlPose), new Point(pickupPose)));
+                grabPickup4.setConstantHeadingInterpolation(scorePose.getHeading());
 
                 scorePickup4 = new Path(new BezierCurve(new Point(pickupPose), new Point(scoreControlPose), new Point(scorePose)));
-                scorePickup4.setLinearHeadingInterpolation(pickupPose.getHeading(), scorePose.getHeading());
+                scorePickup4.setConstantHeadingInterpolation(pickupPose.getHeading());
 
-                grabSample = new Path(new BezierLine(new Point(scorePose), new Point(pickupPose)));
-                grabSample.setLinearHeadingInterpolation(scorePose.getHeading(), pickupPose.getHeading());
+                grabSample = new Path(new BezierCurve(new Point(scorePose), new Point(pickupControlPose), new Point(pickupPose)));
+                grabSample.setConstantHeadingInterpolation(scorePose.getHeading());
 
                 scoreSample = new Path(new BezierLine(new Point(pickupPose), new Point(scoreSamplePose)));
                 scoreSample.setLinearHeadingInterpolation(pickupPose.getHeading(), scoreSamplePose.getHeading());
@@ -390,9 +188,10 @@ public class Auto_Right_Old extends PedroOpMode {
                         new ParallelGroup(
                                 CLAW.INSTANCE.openClawMore(),
                                 new FollowPath(grabPickup2),
-                                ARM1.INSTANCE.toFloor().afterTime(0.4), //0.5
-                                ARM2.INSTANCE.toFloor().afterTime(0.4),
-                                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.7)
+                                ARM1.INSTANCE.toWall2().afterTime(0.4), //0.5
+                                ARM2.INSTANCE.toWall2().afterTime(0.4),
+                                INTAKE_ANGLE.INSTANCE.RotatePositionNegative1().afterTime(0.7),
+                                CLAW_ANGLE.INSTANCE.backward()
                         ),
                         CLAW.INSTANCE.closeClaw(),
                         new ParallelGroup(
@@ -400,14 +199,16 @@ public class Auto_Right_Old extends PedroOpMode {
                                 ARM1.INSTANCE.toHighRung2().afterTime(0.3),
                                 ARM2.INSTANCE.toHighRung2().afterTime(0.3),
                                 new FollowPath(scorePickup2).afterTime(0.4),
-                                INTAKE_ANGLE.INSTANCE.RotatePosition0().afterTime(0.4)
-                        ),
+                                INTAKE_ANGLE.INSTANCE.RotatePosition0().afterTime(0.4),
+                                CLAW_ANGLE.INSTANCE.forward().afterTime(0.5)
+                                ),
                         new ParallelGroup(
                                 CLAW.INSTANCE.openClawMore(),
                                 new FollowPath(grabPickup3),
-                                ARM1.INSTANCE.toFloor().afterTime(0.4), //0.5
-                                ARM2.INSTANCE.toFloor().afterTime(0.4),
-                                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.7)
+                                ARM1.INSTANCE.toWall2().afterTime(0.4), //0.5
+                                ARM2.INSTANCE.toWall2().afterTime(0.4),
+                                INTAKE_ANGLE.INSTANCE.RotatePositionNegative1().afterTime(0.7),
+                                CLAW_ANGLE.INSTANCE.backward()
                         ),
                         CLAW.INSTANCE.closeClaw(),
                         new ParallelGroup(
@@ -415,14 +216,16 @@ public class Auto_Right_Old extends PedroOpMode {
                                 ARM1.INSTANCE.toHighRung2().afterTime(0.3),
                                 ARM2.INSTANCE.toHighRung2().afterTime(0.3),
                                 new FollowPath(scorePickup3).afterTime(0.4),
-                                INTAKE_ANGLE.INSTANCE.RotatePosition0().afterTime(0.4)
+                                INTAKE_ANGLE.INSTANCE.RotatePosition0().afterTime(0.4),
+                                CLAW_ANGLE.INSTANCE.forward().afterTime(0.5)
                         ),
                         new ParallelGroup(
                                 CLAW.INSTANCE.openClawMore(),
                                 new FollowPath(grabPickup4),
-                                ARM1.INSTANCE.toFloor().afterTime(0.4), //0.5
-                                ARM2.INSTANCE.toFloor().afterTime(0.4),
-                                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.7)
+                                ARM1.INSTANCE.toWall2().afterTime(0.4), //0.5
+                                ARM2.INSTANCE.toWall2().afterTime(0.4),
+                                INTAKE_ANGLE.INSTANCE.RotatePositionNegative1().afterTime(0.7),
+                                CLAW_ANGLE.INSTANCE.backward()
                         ),
                         CLAW.INSTANCE.closeClaw(),
                         new ParallelGroup(
@@ -430,21 +233,23 @@ public class Auto_Right_Old extends PedroOpMode {
                                 ARM1.INSTANCE.toHighRung2().afterTime(0.3),
                                 ARM2.INSTANCE.toHighRung2().afterTime(0.3),
                                 new FollowPath(scorePickup4).afterTime(0.4),
-                                INTAKE_ANGLE.INSTANCE.RotatePosition0().afterTime(0.4)
+                                INTAKE_ANGLE.INSTANCE.RotatePosition0().afterTime(0.4),
+                                CLAW_ANGLE.INSTANCE.forward().afterTime(0.5)
                         ),
                         new ParallelGroup(
                                 CLAW.INSTANCE.openClawMore(),
                                 new FollowPath(grabSample),
-                                ARM1.INSTANCE.toFloor().afterTime(0.4), //0.5
-                                ARM2.INSTANCE.toFloor().afterTime(0.4),
-                                INTAKE_ANGLE.INSTANCE.RotatePosition0_left().afterTime(0.7)
+                                ARM1.INSTANCE.toWall2().afterTime(0.4), //0.5
+                                ARM2.INSTANCE.toWall2().afterTime(0.4),
+                                INTAKE_ANGLE.INSTANCE.RotatePositionNegative1().afterTime(0.7),
+                                CLAW_ANGLE.INSTANCE.backward()
                         ),
                         CLAW.INSTANCE.closeClaw(),
                         new ParallelGroup(
                                 ARM1.INSTANCE.toHighBasket().afterTime(0.3),
                                 ARM2.INSTANCE.toHighBasket().afterTime(0.3),
                                 new FollowPath(scoreSample),
-                                CLAW_ANGLE.INSTANCE.backward().afterTime(0.3),
+//                                CLAW_ANGLE.INSTANCE.backward().afterTime(0.3),
                                 INTAKE_ANGLE.INSTANCE.RotatePosition0_basket().afterTime(1)
                         ),
                         CLAW.INSTANCE.openClaw()
